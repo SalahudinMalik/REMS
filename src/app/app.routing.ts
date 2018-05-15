@@ -34,6 +34,11 @@ export const routes: Routes = [
         path: 'components',
         canActivate: [AuthGuard],
         loadChildren: './components/components.module#ComponentsModule'
+      },
+      {
+        path: 'setups',
+        canActivate: [AuthGuard],
+        loadChildren: './setups/setup.module#SetupModule'
       }
     ]
   },

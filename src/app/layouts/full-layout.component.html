@@ -15,11 +15,27 @@
   <div class="sidebar">
     <nav class="sidebar-nav">
       <ul class="nav">
-        <li class="nav-item">
+         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-speedometer"></i> Dashboard </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item"><!--
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/agent']"><i class="icon-people"></i> Agent </a>
+         </li>
+         <li class="divider"></li> -->
+         <!-- <li class="nav-title">
+           Setups
+         </li> -->
+         <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+           <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-users"></i> Setups</a>
+           <ul class="nav-dropdown-items">
+             <li class="nav-item">
+               <a class="nav-link" routerLinkActive="active" [routerLink]="['/setups/owner']"><i class="icon-user"></i> Owner</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" routerLinkActive="active" [routerLink]="['/setups/member']"><i class="icon-user"></i> Member</a>
+             </li>
+            
+           </ul>
          </li>
       </ul>
     </nav>
