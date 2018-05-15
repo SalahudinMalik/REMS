@@ -11,20 +11,25 @@ export class AuthService {
   
   fullurl:any = '';
    userID = '';
+   private _options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
   constructor(
     private global:Globals ,
     private http: HttpClient
   ) { }
-  getLogin(loginname:string,pwd:string , host:string , hits:any):Observable<any>{
+  getLogin(username:string,password:string):Observable<any>{
     this.fullurl = '';
+    let jsonObj = JSON.stringify({username , password});
     // let headers = new Headers({'Content-Type': 'application/json'});
     // let opt = { responseType: 'text' as 'text' };
-     this.fullurl = this.global.weburl + 'auth/login'+'/'+loginname +'/'+pwd +'/'+host +'/'+hits;
+     this.fullurl = this.global.weburl + '/users/login';
     // this.fullurl = this.global.weburl + "auth/login";
     
-      return  this.http.get(this.fullurl)
-      .map((result: Response) => result)
-      .catch(this.errorHandler);
+      // return  this.http.get<any>(this.fullurl)
+      // .map((result: Response) => result)
+      // .catch(this.errorHandler);
+    return  this.http.post<any>(this.fullurl, jsonObj  , this._options)
+          .map((result: Response) => result)
+          .catch(this.errorHandler);
      
     
     

@@ -49,52 +49,53 @@ export class LoginComponent implements OnInit{
 
     }
     this.ngProgress.start();
-    this.router.navigateByUrl("/dashboard");
-    this.authService.setToken("malik"); 
-      // this.authService.getLogin(this.userName , this.userPass , this.host , this.hits)
-      //   .subscribe(data => {
-      //     this.res = data;
-      //     //console.log("Sub : " +data);
+    // this.router.navigateByUrl("/dashboard");
+    // this.authService.setToken("malik"); 
+      this.authService.getLogin(this.userName , this.userPass)
+        .subscribe(data => {
+          this.res = data;
+          //console.log("Sub : " +data);
           
-      //    // if(data == '1'){
-      //     if(!this.res.includes("Error")) {
-      //       console.log("Success :" + this.res)
-      //       this.authService.setToken(this.userName); 
-      //       this.ngProgress.done();
-      //       this.toastr.success('Successfully ', 'Login');
-      //       this.router.navigateByUrl("/dashboard");
+         // if(data == '1'){
+         // if(!this.res.includes("Error")) {
+         if(this.res == this.userName) {
+            console.log("Success :" + this.res)
+            this.authService.setToken(this.userName); 
+            this.ngProgress.done();
+            this.toastr.success('Successfully ', 'Login');
+            this.router.navigateByUrl("/dashboard");
            
-      //     }
-      //     else {
-      //       this.hits++;
-      //       console.log(this.hits);
-      //       this.oldUserName = this.userName;
-      //       this.ngProgress.done();
-      //       this.toastr.warning(this.res , 'ERROR');
-      //     }
-      //   },
-      //   error =>{
-      //     this.errorMsg = error
-      //     this.ngProgress.done();
-      //     this.toastr.error("Server Error" , this.errorMsg);
-      //   });
+          }
+          else {
+            this.hits++;
+            console.log(this.hits);
+            this.oldUserName = this.userName;
+            this.ngProgress.done();
+            this.toastr.warning(this.res , 'ERROR');
+          }
+        },
+        error =>{
+          this.errorMsg = error
+          this.ngProgress.done();
+          this.toastr.error("Server Error" , this.errorMsg);
+        });
 
           
 
-      //     // console.log(Response);
-      //     // this.router.navigateByUrl("/pages/dashboard");
+          // console.log(Response);
+          // this.router.navigateByUrl("/pages/dashboard");
       
-      // // this._employeeService.getEmployees()
-      // // .subscribe(data => this.employees = data,
-      // //           error => this.errorMsg = error);
-      //   //console.log("values : " + this.res)
-      //   if(this.res == '1'){
-      //     console.log("Success :" + this.res)
+      // this._employeeService.getEmployees()
+      // .subscribe(data => this.employees = data,
+      //           error => this.errorMsg = error);
+        //console.log("values : " + this.res)
+        if(this.res == '1'){
+          console.log("Success :" + this.res)
 
-      //   }
-      //   else {
-      //     console.log("Error data :" + this.res)
-      //   }
+        }
+        else {
+          console.log("Error data :" + this.res)
+        }
       
   }
  
